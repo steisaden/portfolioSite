@@ -71,7 +71,7 @@ const Navbar = () => {
                       className={`${ 
                         active === nav.title 
                         ? 'text-pink-100' 
-                        : 'text-cadetGrey-100' 
+                        : 'text-primary-100' 
                       }   hover:text-white text-[18px] font-medium cursor-pointer`}
                       
                       onClick={() => {
