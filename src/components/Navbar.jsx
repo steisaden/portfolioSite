@@ -35,6 +35,7 @@ const Navbar = () => {
         <ul className='list-none hidden sm:flex flex-row gap-10'>
           {navLinks.map((nav) => (
             <li
+              key={nav.id}
               className={`${ 
                 active === nav.title 
                 ? 'text-pink-100' 
