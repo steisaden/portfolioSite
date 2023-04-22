@@ -1,4 +1,4 @@
-import React, { useRef, useState } from "react";
+import React, { useRef, useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import emailjs from "@emailjs/browser";
 // import { StarsCanvas } from '../components'
@@ -7,6 +7,8 @@ import { styles } from "../style";
 import { EarthCanvas } from "./canvas";
 import { SectionWrapper } from "../hoc";
 import { slideIn } from "../utils/motion";
+
+
 
 const Contact = () => {
   const formRef = useRef();
@@ -64,6 +66,27 @@ const Contact = () => {
         }
       );
   };
+
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    // Add event listener for changes to the screen size
+    const mediaQuery = window.matchMedia('(max-width: 500px)')
+
+    // set the initial value for the isMobile state variable
+    setIsMobile(mediaQuery.matches)
+
+    // Define a callback function to handle changes to the media query
+    const handleMediaQueryChange = (event) => {
+      setIsMobile(event.matches)
+    }
+
+    // Add the callback function aa a listener for changes to the media query
+    mediaQuery.addEventListener('change', handleMediaQueryChange)
+
+    // Remove the listener when the component is unmounted 
+    return () => { mediaQuery.removeEventListener('change', handleMediaQueryChange)}
+  }, [])
 
   return (
     <div
@@ -123,13 +146,15 @@ const Contact = () => {
           </button>
         </form>
       </motion.div>
-
-      <motion.div
-        variants={slideIn("right", "tween", 0.2, 1)}
-        className='xl:flex-1 xl:h-auto md:h-[550px] h-[350px]'
-      >
-        <EarthCanvas />
-      </motion.div>
+      {isMobile ? null :(
+        <motion.div
+          variants={slideIn("right", "tween", 0.2, 1)}
+          className='xl:flex-1 xl:h-auto md:h-[550px] h-[350px]'
+        >
+          <EarthCanvas />
+        </motion.div>
+      )}
+      
       {/* <StarsCanvas /> */}
     </div>
   );

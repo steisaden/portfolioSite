@@ -1,4 +1,4 @@
-import React, { Suspense } from "react";
+import React, { Suspense, useState, useEffect } from "react";
 import { Canvas } from "@react-three/fiber";
 import { OrbitControls, Preload, useGLTF } from "@react-three/drei";
 
@@ -56,7 +56,7 @@ const EarthCanvas = () => {
           maxPolarAngle={Math.PI / 2}
           minPolarAngle={Math.PI / 2}
         />
-        {isMobile ? null : <Earth />}
+       <Earth />
 
         <Preload all />
       </Suspense>
