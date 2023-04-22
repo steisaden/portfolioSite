@@ -4,7 +4,7 @@ import { About, Contact, Experience, Hero, Tech, Works, StarsCanvas, Navbar, Fee
 const App = () => {
   return (
     <BrowserRouter>
-      <div className='relative z-0 bg-black-300'>
+      <div className='relative bg-black-300'>
           <Navbar />
           <Hero />        
           <About />
